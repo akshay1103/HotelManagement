@@ -1,4 +1,7 @@
 
+using AdminWebAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace AdminWebAPI
 {
     public class Program
@@ -10,6 +13,9 @@ namespace AdminWebAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Data"))
+            );
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
